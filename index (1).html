@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>De Flavors — Cakes &amp; Pastries, Karur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FBF4EA;
+    --bg-alt:#F3E6D3;
+    --card:#FFFFFF;
+    --ink:#3B2A20;
+    --ink-soft:#7A6552;
+    --maroon:#C1694F;
+    --maroon-ink:#A14E38;
+    --gold:#D9A441;
+    --blush:#8CA085;
+    --line: rgba(59,42,32,0.15);
+    --veg:#2E7D32;
+    --nonveg:#8B2E2E;
+    --shadow: 0 18px 40px -24px rgba(59,42,32,0.32);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark){
+      --bg:#241A12;
+      --bg-alt:#2D2117;
+      --card:#31241A;
+      --ink:#F2E6D8;
+      --ink-soft:#C7B39C;
+      --maroon:#E08A6E;
+      --maroon-ink:#F0A488;
+      --gold:#E8C069;
+      --blush:#A9C2A0;
+      --line: rgba(242,230,216,0.16);
+      --shadow: 0 18px 40px -24px rgba(0,0,0,0.6);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#241A12;
+    --bg-alt:#2D2117;
+    --card:#31241A;
+    --ink:#F2E6D8;
+    --ink-soft:#C7B39C;
+    --maroon:#E08A6E;
+    --maroon-ink:#F0A488;
+    --gold:#E8C069;
+    --blush:#A9C2A0;
+    --line: rgba(242,230,216,0.16);
+    --shadow: 0 18px 40px -24px rgba(0,0,0,0.6);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Jost', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    color:var(--maroon);
+    margin:0;
+    font-weight:600;
+  }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 24px; }
+  .wide-wrap{ max-width:1280px; margin:0 auto; padding:0 24px; }
+
+  /* Header */
+  header.site{
+    position:sticky; top:0; z-index:40;
+    background:color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .header-row{
+    display:flex; align-items:center; gap:16px;
+    padding:14px 24px;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; }
+  .brand img{ height:52px; width:52px; border-radius:50%; object-fit:cover; box-shadow:var(--shadow); }
+  .brand-text{ display:flex; flex-direction:column; line-height:1.15; }
+  .brand-text .name{ font-family:'Fraunces',serif; font-weight:700; font-size:1.25rem; color:var(--maroon); }
+  .brand-text .loc{ font-size:0.72rem; letter-spacing:0.04em; color:var(--ink-soft); }
+  nav.tabs{
+    display:flex; gap:4px; overflow-x:auto; margin-left:auto;
+    scrollbar-width:none;
+  }
+  nav.tabs::-webkit-scrollbar{ display:none; }
+  nav.tabs a{
+    white-space:nowrap;
+    text-decoration:none;
+    font-size:0.86rem;
+    padding:8px 14px;
+    border-radius:999px;
+    color:var(--ink-soft);
+    border:1px solid transparent;
+    transition:background .2s ease, color .2s ease, border-color .2s ease;
+  }
+  nav.tabs a:hover{ color:var(--maroon); }
+  nav.tabs a.active{
+    background:var(--maroon);
+    color:var(--bg);
+    border-color:var(--maroon);
+  }
+  .call-btn{
+    flex-shrink:0;
+    text-decoration:none;
+    background:var(--gold);
+    color:#241505;
+    font-size:0.85rem;
+    font-weight:600;
+    padding:9px 16px;
+    border-radius:999px;
+    white-space:nowrap;
+  }
+
+  /* Hero */
+  .hero{
+    padding:64px 24px 40px;
+  }
+  .hero-inner{
+    max-width:1080px; margin:0 auto;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 4.5vw, 3.4rem);
+    line-height:1.08;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .hero p.lede{
+    margin-top:18px;
+    max-width:46ch;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+  }
+  .hero .cta-row{ display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; }
+  .btn{
+    text-decoration:none;
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 22px;
+    border-radius:999px;
+    font-size:0.92rem;
+    font-weight:600;
+    transition:transform .15s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-primary{ background:var(--maroon); color:var(--bg); }
+  .btn-outline{ border:1.5px solid var(--maroon); color:var(--maroon); }
+  .hero-art{ width:100%; height:auto; }
+  .hero-tagline{
+    margin-top:26px; display:flex; gap:22px; flex-wrap:wrap;
+    font-size:0.82rem; color:var(--ink-soft); letter-spacing:.02em;
+  }
+  .hero-tagline span{ display:flex; align-items:center; gap:6px; }
+  .hero-tagline svg{ width:16px; height:16px; stroke:var(--gold); }
+
+  /* About strip */
+  .about-strip{
+    background:var(--bg-alt);
+    padding:36px 24px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .about-strip .wrap{
+    display:grid; grid-template-columns: 1fr 1fr 1fr; gap:28px;
+  }
+  .about-strip h3{ font-size:1rem; color:var(--maroon); margin-bottom:6px; }
+  .about-strip p{ margin:0; color:var(--ink-soft); font-size:0.92rem; }
+
+  /* Menu sections */
+  /* Floating WhatsApp button */
+  .float-whatsapp{
+    position:fixed; right:20px; bottom:20px; z-index:50;
+    display:flex; align-items:center; gap:8px;
+    background:#25D366; color:#fff; text-decoration:none;
+    padding:13px 18px; border-radius:999px;
+    box-shadow:0 10px 24px -8px rgba(0,0,0,0.4);
+    font-size:0.88rem; font-weight:600;
+    transition:transform .15s ease;
+  }
+  .float-whatsapp:hover{ transform:translateY(-2px) scale(1.03); }
+  .float-whatsapp svg{ width:20px; height:20px; flex-shrink:0; }
+  @media (max-width:480px){
+    .float-whatsapp span{ display:none; }
+    .float-whatsapp{ padding:13px; }
+  }
+
+  /* Bestsellers */
+  .favourites{ padding:52px 24px; background:var(--bg-alt); border-bottom:1px solid var(--line); }
+  .favourites .section-sub{ margin-bottom:26px; }
+  .fav-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .fav-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:20px; box-shadow:var(--shadow);
+  }
+  .fav-card .tag{
+    display:inline-block; font-size:0.68rem; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:8px;
+  }
+  .fav-card h3{ font-size:1.05rem; color:var(--ink); margin-bottom:6px; }
+  .fav-card p{ margin:0; color:var(--ink-soft); font-size:0.86rem; }
+  .fav-card .fav-price{ margin-top:12px; font-family:'Fraunces',serif; font-weight:600; color:var(--maroon-ink); }
+  @media (max-width:820px){ .fav-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:480px){ .fav-grid{ grid-template-columns:1fr; } }
+
+  /* FAQ */
+  /* Reviews */
+  .reviews{ padding:56px 24px; background:var(--bg-alt); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .reviews .section-sub{ margin-bottom:8px; }
+  .rating-line{ display:flex; align-items:center; gap:8px; margin-bottom:30px; }
+  .rating-line .stars{ display:flex; gap:2px; }
+  .rating-line .stars svg{ width:16px; height:16px; fill:var(--gold); stroke:none; }
+  .rating-line span{ color:var(--ink-soft); font-size:0.86rem; }
+  .review-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+  .review-card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:22px; box-shadow:var(--shadow); display:flex; flex-direction:column; gap:12px;
+  }
+  .review-card .stars{ color:var(--gold); letter-spacing:2px; font-size:0.95rem; }
+  .review-card p{ margin:0; font-size:0.92rem; color:var(--ink); flex:1; font-style:italic; }
+  .review-card a{ font-size:0.78rem; color:var(--maroon-ink); text-decoration:none; font-weight:600; }
+  .review-card a:hover{ text-decoration:underline; }
+  @media (max-width:820px){ .review-grid{ grid-template-columns:1fr; } }
+
+  .faq{ padding:56px 24px; }
+  .faq-item{ border-bottom:1px solid var(--line); }
+  .faq-q{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    padding:18px 0; font-family:'Fraunces',serif; font-size:1.02rem; color:var(--ink); font-weight:600;
+  }
+  .faq-q svg{ width:18px; height:18px; stroke:var(--maroon); flex-shrink:0; transition:transform .2s ease; }
+  .faq-item.open .faq-q svg{ transform:rotate(45deg); }
+  .faq-a{ max-height:0; overflow:hidden; transition:max-height .25s ease; }
+  .faq-item.open .faq-a{ max-height:200px; }
+  .faq-a p{ margin:0 0 18px; color:var(--ink-soft); font-size:0.92rem; max-width:65ch; }
+
+  /* Footer */
+  footer.site-footer{
+    background:var(--bg-alt); padding:44px 24px 24px; border-top:1px solid var(--line);
+  }
+  .footer-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:32px; max-width:1080px; margin:0 auto; }
+  .footer-brand{ display:flex; align-items:center; gap:10px; margin-bottom:10px; }
+  .footer-brand img{ height:38px; width:38px; border-radius:50%; }
+  .footer-brand .name{ font-family:'Fraunces',serif; font-weight:700; color:var(--maroon); }
+  .footer-col h4{ font-size:0.82rem; text-transform:uppercase; letter-spacing:.06em; color:var(--maroon); margin-bottom:12px; }
+  .footer-col a{ display:block; text-decoration:none; color:var(--ink-soft); font-size:0.88rem; padding:5px 0; }
+  .footer-col a:hover{ color:var(--maroon); }
+  .footer-bottom{
+    max-width:1080px; margin:28px auto 0; padding-top:18px; border-top:1px solid var(--line);
+    color:var(--ink-soft); font-size:0.78rem; text-align:center;
+  }
+  @media (max-width:720px){ .footer-grid{ grid-template-columns:1fr; } }
+
+  .menu-section{ padding:56px 24px; scroll-margin-top:120px; border-bottom:1px solid var(--line); }
+  .menu-section:last-of-type{ border-bottom:none; }
+  .section-banner{
+    width:100%; aspect-ratio:3.4/1; border-radius:20px; overflow:hidden;
+    background:var(--bg-alt); margin-bottom:28px; border:1px solid var(--line);
+  }
+  .section-banner svg{ width:100%; height:100%; display:block; }
+  @media (max-width:600px){ .section-banner{ aspect-ratio:2/1; } }
+  .section-head{ display:flex; align-items:center; gap:14px; margin-bottom:8px; }
+  .section-head svg{ width:34px; height:34px; stroke:var(--maroon); flex-shrink:0; }
+  .section-head h2{ font-size:1.7rem; }
+  .section-sub{ color:var(--ink-soft); font-size:0.92rem; margin:6px 0 30px; max-width:60ch; }
+
+  .item-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    column-gap:44px;
+    row-gap:4px;
+  }
+  .menu-item{
+    padding:13px 0;
+    border-bottom:1px solid var(--line);
+    break-inside:avoid;
+  }
+  .menu-item-row{ display:flex; align-items:baseline; gap:6px; }
+  .veg-mark{
+    width:11px; height:11px;
+    border:1.4px solid var(--veg);
+    border-radius:2px;
+    display:inline-flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-right:2px;
+  }
+  .veg-mark::after{ content:""; width:5px; height:5px; border-radius:50%; background:var(--veg); }
+  .veg-mark.nonveg{ border-color:var(--nonveg); }
+  .veg-mark.nonveg::after{ background:var(--nonveg); }
+  .menu-item-name{ font-weight:500; font-size:0.98rem; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .dots{ flex:1; border-bottom:1.5px dotted var(--line); position:relative; top:-5px; min-width:14px; }
+  .price{ white-space:nowrap; font-family:'Fraunces',serif; font-weight:600; color:var(--maroon-ink); font-size:0.98rem; }
+  .menu-item-desc{ margin:3px 0 0 17px; font-size:0.82rem; color:var(--ink-soft); font-style:italic; }
+
+  @media (max-width:720px){
+    .item-grid{ grid-template-columns:1fr; }
+  }
+
+  /* Custom cakes banner */
+  .banner{
+    background:var(--maroon);
+    color:var(--bg);
+    padding:54px 24px;
+  }
+  .banner .wrap{ display:grid; grid-template-columns:1.3fr 0.9fr; gap:36px; align-items:center; }
+  .banner h2{ color:var(--bg); font-size:1.9rem; }
+  .banner p{ color:color-mix(in srgb, var(--bg) 82%, transparent); max-width:52ch; margin-top:10px; font-size:0.98rem; }
+  .banner .btn-primary{ background:var(--bg); color:var(--maroon-ink); }
+  .banner-list{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px; }
+  .banner-list li{ display:flex; gap:10px; align-items:flex-start; font-size:0.92rem; }
+  .banner-list svg{ width:18px; height:18px; stroke:var(--gold); flex-shrink:0; margin-top:2px; }
+
+  /* Also available */
+  .also-strip{
+    padding:34px 24px; text-align:center; background:var(--bg-alt);
+    border-bottom:1px solid var(--line);
+  }
+  .also-strip p{ margin:0; color:var(--ink-soft); font-size:0.92rem; }
+  .also-strip strong{ color:var(--maroon); }
+
+  /* Visit section */
+  .visit{ padding:60px 24px; }
+  .visit .wrap{ display:grid; grid-template-columns:1fr 1fr; gap:48px; }
+  .visit h2{ font-size:1.7rem; margin-bottom:18px; }
+  .info-row{ display:flex; gap:14px; padding:14px 0; border-bottom:1px solid var(--line); }
+  .info-row svg{ width:20px; height:20px; stroke:var(--gold); flex-shrink:0; margin-top:2px; }
+  .info-row .label{ font-size:0.76rem; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); }
+  .info-row .value{ font-size:0.98rem; margin-top:2px; }
+  .info-row .value a{ text-decoration:none; color:var(--maroon-ink); font-weight:600; }
+  .map-card{
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    padding:28px; box-shadow:var(--shadow);
+  }
+  .map-card h3{ font-size:1.1rem; margin-bottom:10px; }
+  .map-card p{ color:var(--ink-soft); font-size:0.9rem; margin:0 0 18px; }
+  .social-row{ display:flex; gap:10px; flex-wrap:wrap; margin-top:20px; }
+  .social-row a{
+    text-decoration:none; font-size:0.84rem; padding:9px 16px; border-radius:999px;
+    border:1px solid var(--line); color:var(--ink); transition:border-color .2s;
+  }
+  .social-row a:hover{ border-color:var(--maroon); color:var(--maroon); }
+
+  footer{
+    padding:30px 24px; text-align:center; color:var(--ink-soft); font-size:0.8rem;
+    border-top:1px solid var(--line);
+  }
+  footer .brand-text{ display:none; }
+
+  @media (max-width:820px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-art{ order:-1; max-width:280px; margin:0 auto; }
+    .about-strip .wrap{ grid-template-columns:1fr; }
+    .banner .wrap{ grid-template-columns:1fr; }
+    .visit .wrap{ grid-template-columns:1fr; }
+    .header-row{ flex-wrap:wrap; row-gap:10px; }
+    nav.tabs{
+      order:3; width:100%; margin-left:0;
+      justify-content:flex-start;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 16px, #000 calc(100% - 16px), transparent);
+    }
+  }
+
+  @media (max-width:480px){
+    .header-row{ padding:12px 16px; }
+    .brand img{ height:42px; width:42px; }
+    .brand-text .name{ font-size:1.05rem; }
+    .call-btn{ padding:8px 13px; font-size:0.78rem; }
+    .hero{ padding:44px 16px 28px; }
+    .menu-section{ padding:40px 16px; }
+    .wrap, .wide-wrap{ padding:0 16px; }
+    .section-head h2{ font-size:1.4rem; }
+    .section-head svg{ width:28px; height:28px; }
+    .cta-row{ flex-direction:column; align-items:stretch; }
+    .cta-row .btn{ justify-content:center; }
+    .banner{ padding:40px 16px; }
+    .visit{ padding:44px 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="header-row">
+    <a class="brand" href="#top">
+      <img src="data:image/jpeg;base64,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" alt="De Flavors logo">
+      <span class="brand-text">
+        <span class="name">De Flavors</span>
+        <span class="loc">Cakes &amp; Pastries · Karur</span>
+      </span>
+    </a>
+    <nav class="tabs" id="tabNav">
+      <a href="#cakes">Cakes</a>
+      <a href="#jar-cakes">Jar Cakes</a>
+      <a href="#desserts">Desserts</a>
+      <a href="#snacks">Snacks</a>
+      <a href="#drinks">Drinks</a>
+      <a href="#custom">Custom Orders</a>
+      <a href="#visit">Visit</a>
+    </nav>
+    <a class="call-btn" href="tel:+916369774860">Call to Order</a>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-inner">
+    <div>
+      <h1>Cakes and pastries, baked fresh every morning in Karur.</h1>
+      <p class="lede">A neighbourhood bakery making butter cream cakes, jar cakes, brownies and tarts by hand — plus a full snack and cold coffee menu for whenever the craving hits.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://wa.me/916369774860" target="_blank" rel="noopener">Order on WhatsApp</a>
+        <a class="btn btn-outline" href="#cakes">View Menu</a>
+      </div>
+      <div class="hero-tagline">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M12 2v6M12 22v-6M4 12h6M14 12h6"/></svg>Freshly baked daily</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>Order ahead for custom cakes</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>Karur, Tamil Nadu</span>
+      </div>
+    </div>
+    <svg class="hero-art" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="190" fill="var(--bg-alt)"/>
+      <g transform="translate(80,120)">
+        <path d="M20 160 L100 40 L180 160 Z" fill="var(--card)" stroke="var(--maroon)" stroke-width="3" stroke-linejoin="round"/>
+        <path d="M35 150 L100 55 L165 150 Z" fill="none" stroke="var(--gold)" stroke-width="2" stroke-dasharray="2 6"/>
+        <path d="M20 160 h160 v14 a6 6 0 0 1 -6 6 H26 a6 6 0 0 1 -6 -6 Z" fill="var(--maroon)"/>
+        <path d="M60 100 q10 -18 20 0 q10 -18 20 0" stroke="var(--blush)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <circle cx="100" cy="45" r="7" fill="var(--blush)"/>
+        <rect x="97" y="18" width="6" height="20" rx="3" fill="var(--gold)"/>
+        <path d="M100 18 q10 -14 2 -20" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(255,235)" opacity="0.9">
+        <circle r="26" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <circle r="9" fill="var(--blush)"/>
+      </g>
+      <g transform="translate(72,270)" opacity="0.85">
+        <circle r="18" fill="var(--card)" stroke="var(--gold)" stroke-width="3"/>
+        <circle r="6" fill="var(--gold)"/>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<section class="about-strip">
+  <div class="wrap">
+    <div>
+      <h3>Made in small batches</h3>
+      <p>Every cake, jar dessert and brownie is made by hand in our Karur kitchen — nothing mass-produced, nothing sitting around.</p>
+    </div>
+    <div>
+      <h3>Egg and eggless, your choice</h3>
+      <p>Most cakes and bakes can be made eggless on request — just mention your preference when you order.</p>
+    </div>
+    <div>
+      <h3>Custom cakes welcome</h3>
+      <p>Birthdays, anniversaries or just because — tell us the occasion and we'll design a cake for it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="favourites">
+  <div class="wrap">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.3l-6.16 3.6 1.64-7L2 9.24l7.12-.61L12 2l2.88 6.63 7.12.61-5.48 4.66 1.64 7z"/></svg>
+      <h2>Customer Favourites</h2>
+    </div>
+    <p class="section-sub">New here? Start with what our regulars keep coming back for.</p>
+    <div class="fav-grid">
+      <div class="fav-card">
+        <span class="tag">Jar Cake</span>
+        <h3>Tiramisu Jar Cake</h3>
+        <p>Coffee-soaked layers with a light cream finish — our most-ordered jar, hands down.</p>
+        <div class="fav-price">₹180.00</div>
+      </div>
+      <div class="fav-card">
+        <span class="tag">Butter Cream Cake</span>
+        <h3>Chocolate Butter Cream Cake</h3>
+        <p>Rich, moist and reliably the first cake to sell out on weekends.</p>
+        <div class="fav-price">₹325.00</div>
+      </div>
+      <div class="fav-card">
+        <span class="tag">Brownie</span>
+        <h3>Lotus Biscoff Brownie</h3>
+        <p>Fudgy brownie loaded with Biscoff crunch — the one people order in twos.</p>
+        <div class="fav-price">₹140.00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main id="menuData"></main>
+
+<section class="banner" id="custom">
+  <div class="wrap">
+    <div>
+      <h2>Planning a birthday or a celebration?</h2>
+      <p>We take custom cake orders for birthdays, anniversaries and every occasion in between — choose your flavour, size and design, egg or eggless. Give us a day's notice and we'll have it ready.</p>
+      <a class="btn btn-primary" href="https://wa.me/916369774860" target="_blank" rel="noopener" style="margin-top:22px;">Enquire on WhatsApp</a>
+    </div>
+    <ul class="banner-list">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg>Custom flavours, sizes &amp; designs</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg>Egg or eggless, made to order</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg>Photo cakes &amp; theme cakes on request</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg>Please order at least 24 hours ahead</li>
+    </ul>
+  </div>
+</section>
+
+<div class="also-strip">
+  <p>Also at De Flavors: <strong>wood-fired style Pizza</strong> and seasonal specials — ask in-store or check our Instagram for what's on today.</p>
+</div>
+
+<section class="faq" id="faq">
+  <div class="wrap" style="max-width:760px;">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1.2.9-1.2 1.7v.3M12 17h.01"/></svg>
+      <h2>Good to know</h2>
+    </div>
+    <div id="faqList"></div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <svg viewBox="0 0 24 24" fill="none" stroke="var(--maroon)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17.3l-6.16 3.6 1.64-7L2 9.24l7.12-.61L12 2l2.88 6.63 7.12.61-5.48 4.66 1.64 7z"/></svg>
+      <h2>What people are saying</h2>
+    </div>
+    <p class="section-sub">Real reviews from our Google Business listing.</p>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>&ldquo;Place is small yet they have multiple options and everything is yumm.&rdquo;</p>
+        <a href="https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s109312466089880763829!2s0x3baa2ff2c6b1b1ed:0x7dc1263d34033b1e?ved=1t:31295&amp;ictx=111" target="_blank" rel="noopener">Read on Google →</a>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>&ldquo;Cakes are delicious — a bit pricier, but it genuinely felt worth it.&rdquo;</p>
+        <a href="https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s105367428720658113790!2s0x3baa2ff2c6b1b1ed:0x7dc1263d34033b1e?ved=1t:31295&amp;ictx=111" target="_blank" rel="noopener">Read on Google →</a>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>&ldquo;A customer compared photos of what they ordered on Swiggy versus what arrived — see the full review for the pictures.&rdquo;</p>
+        <a href="https://www.google.com/maps/reviews/data=!4m5!14m4!1m3!1m2!1s100474117251876945441!2s0x3baa2ff2c6b1b1ed:0x7dc1263d34033b1e?ved=1t:31295&amp;ictx=111" target="_blank" rel="noopener">Read on Google →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="visit" id="visit">
+  <div class="wrap">
+    <div>
+      <h2>Visit the bakery</h2>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M3 11l9-8 9 8M5 10v10h14V10"/></svg>
+        <div>
+          <div class="label">Address</div>
+          <div class="value">179, Nagapattinam - Coimbatore - Gundlupet Hwy, Alwin Nagar, Karur, Tamil Nadu 639002</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <div>
+          <div class="label">Hours</div>
+          <div class="value">Open daily, 9:00 AM – 10:00 PM</div>
+        </div>
+      </div>
+      <div class="info-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+        <div>
+          <div class="label">Phone</div>
+          <div class="value"><a href="tel:+916369774860">+91 63697 74860</a></div>
+        </div>
+      </div>
+      <div class="social-row">
+        <a href="https://www.instagram.com/de_flavors_karur/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.facebook.com/deflavors.karur/" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.zomato.com/karur/de-flavors-cakes-and-pastries-karur-locality/order" target="_blank" rel="noopener">Zomato</a>
+      </div>
+    </div>
+    <div class="map-card">
+      <h3>Find us on Google Maps</h3>
+      <p>Tap below for directions from wherever you are.</p>
+      <a class="btn btn-primary" href="https://www.google.com/maps/place/De+Flavors+Karur+-+Pastries+and+Cakes/@10.9610918,78.0645075,855m" target="_blank" rel="noopener">Get Directions</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">
+        <img src="data:image/jpeg;base64,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" alt="De Flavors logo">
+        <span class="name">De Flavors</span>
+      </div>
+      <p style="color:var(--ink-soft); font-size:0.88rem; max-width:32ch; margin:0;">Handmade cakes, jar desserts and pastries, baked fresh every day in Karur.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="#cakes">Cakes</a>
+      <a href="#jar-cakes">Jar Cakes</a>
+      <a href="#desserts">Desserts</a>
+      <a href="#snacks">Snacks</a>
+      <a href="#drinks">Drinks</a>
+      <a href="#custom">Custom Orders</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="https://wa.me/916369774860" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="https://www.instagram.com/de_flavors_karur/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://www.facebook.com/deflavors.karur/" target="_blank" rel="noopener">Facebook</a>
+      <a href="https://www.zomato.com/karur/de-flavors-cakes-and-pastries-karur-locality/order" target="_blank" rel="noopener">Zomato</a>
+      <a href="#visit">Directions</a>
+    </div>
+  </div>
+  <div class="footer-bottom">De Flavors — Cakes &amp; Pastries, Karur. Prices as of the current in-store menu; please confirm at the time of ordering.</div>
+</footer>
+
+<a class="float-whatsapp" href="https://wa.me/916369774860" target="_blank" rel="noopener" aria-label="Order on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.78 14.14c-.24.68-1.4 1.3-1.94 1.36-.5.06-1.11.09-1.79-.11-.41-.13-.94-.3-1.62-.6-2.84-1.23-4.7-4.1-4.84-4.29-.14-.19-1.16-1.54-1.16-2.94s.73-2.09 1-2.37c.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.12.07.14.11.31.02.5-.09.19-.14.31-.28.47-.14.16-.29.36-.42.49-.14.14-.28.29-.12.57.16.28.71 1.17 1.52 1.9 1.05.94 1.93 1.23 2.21 1.37.28.14.44.12.6-.07.16-.19.68-.79.87-1.06.18-.28.36-.23.6-.14.24.09 1.55.73 1.82.87.27.14.45.21.51.32.07.12.07.66-.17 1.33z"/></svg>
+  <span>Order on WhatsApp</span>
+</a>
+
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  const faqs = [
+    ["How far ahead should I order a custom or birthday cake?","At least 24 hours' notice is ideal, especially for photo cakes or larger designs. For weekends and festival days, a day or two extra helps us fit you in."],
+    ["Do you make eggless cakes?","Yes — most cakes and bakes on the menu can be made eggless on request. Just mention it when you place your order."],
+    ["Do you deliver, or is it pickup only?","We're listed on Zomato for delivery in Karur — check the app for your area, or call/WhatsApp us directly to arrange pickup or delivery."],
+    ["Can I customise flavours, size or design for a cake?","Yes, custom flavours, sizes and theme designs are available — WhatsApp us your idea and we'll work out the details together."],
+  ];
+  const list = document.getElementById('faqList');
+  faqs.forEach(([q,a])=>{
+    const item = document.createElement('div');
+    item.className = 'faq-item';
+    item.innerHTML = `<button class="faq-q" type="button">${q}<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button><div class="faq-a"><p>${a}</p></div>`;
+    item.querySelector('.faq-q').addEventListener('click', ()=> item.classList.toggle('open'));
+    list.appendChild(item);
+  });
+});
+</script>
+
+
+<script>
+const veg = (extra="") => `<span class="veg-mark${extra}"></span>`;
+
+const sections = [
+  {
+    id:"cakes", title:"Butter Cream Cakes", sub:"Classic layered cakes, standard size. Ask about other sizes and eggless when ordering.",
+    icon:`<path d="M4 20h16M4 20v-7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v7M6 11l1-4M18 11l-1-4M9 7l1-3M15 7l-1-3" />`,
+    banner:`<svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="900" height="260" fill="var(--bg-alt)"/>
+      <ellipse cx="450" cy="220" rx="240" ry="14" fill="var(--line)" opacity="0.5"/>
+      <rect x="390" y="205" width="120" height="9" rx="4" fill="var(--gold)"/>
+      <rect x="440" y="214" width="20" height="12" fill="var(--gold)"/>
+      <rect x="345" y="150" width="210" height="58" rx="10" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+      <path d="M345 164 q26 -12 52 0 q26 -12 52 0 q26 -12 52 0 q26 -12 52 0" stroke="var(--blush)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <rect x="380" y="92" width="140" height="62" rx="10" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+      <path d="M380 108 q17 -12 34 0 q17 -12 34 0 q17 -12 34 0 q17 -12 34 0" stroke="var(--blush)" stroke-width="4" fill="none" stroke-linecap="round"/>
+      <path d="M393 94 q9 -15 18 0 q9 -15 18 0 q9 -15 18 0 q9 -15 18 0 q9 -15 18 0" fill="none" stroke="var(--gold)" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="450" cy="66" r="9" fill="var(--maroon)"/>
+      <circle cx="235" cy="188" r="6" fill="var(--gold)" opacity="0.55"/>
+      <circle cx="258" cy="170" r="4" fill="var(--blush)" opacity="0.6"/>
+      <circle cx="672" cy="178" r="6" fill="var(--blush)" opacity="0.55"/>
+      <circle cx="648" cy="196" r="4" fill="var(--gold)" opacity="0.6"/>
+      <path d="M180 200 q10 -22 -6 -34" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+      <path d="M720 200 q-10 -22 6 -34" stroke="var(--blush)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.5"/>
+    </svg>`,
+    items:[
+      ["Vanilla Butter Cream Cake","",325],
+      ["Strawberry Butter Cream Cake","",325],
+      ["Pineapple Butter Cream Cake","",325],
+      ["Butterscotch Butter Cream Cake","",325],
+      ["Chocolate Butter Cream Cake","",325],
+      ["Honey Butter Cream Cake","",325],
+    ]
+  },
+  {
+    id:"jar-cakes", title:"Jar Cakes", sub:"Layered dessert jars — grab-and-go, no cutting required.",
+    icon:`<path d="M7 3h10M8 3v3.5c0 .8-.3 1.5-.9 2.1C6 9.7 6 10.8 6 12v6a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3v-6c0-1.2 0-2.3-1.1-3.4-.6-.6-.9-1.3-.9-2.1V3"/>`,
+    banner:`<svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="900" height="260" fill="var(--bg-alt)"/>
+      <ellipse cx="220" cy="222" rx="60" ry="10" fill="var(--line)" opacity="0.5"/>
+      <ellipse cx="450" cy="222" rx="60" ry="10" fill="var(--line)" opacity="0.5"/>
+      <ellipse cx="680" cy="222" rx="60" ry="10" fill="var(--line)" opacity="0.5"/>
+      <g transform="translate(175,90)">
+        <rect x="0" y="60" width="90" height="70" rx="14" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <rect x="4" y="86" width="82" height="40" rx="10" fill="var(--maroon-ink)" opacity="0.8"/>
+        <rect x="14" y="38" width="62" height="26" rx="10" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <ellipse cx="45" cy="38" rx="31" ry="8" fill="var(--gold)"/>
+        <circle cx="45" cy="30" r="7" fill="var(--blush)"/>
+      </g>
+      <g transform="translate(405,60)">
+        <rect x="0" y="60" width="90" height="100" rx="14" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <rect x="4" y="90" width="82" height="66" rx="10" fill="var(--gold)" opacity="0.75"/>
+        <rect x="4" y="112" width="82" height="24" fill="var(--card)" opacity="0.9"/>
+        <rect x="14" y="38" width="62" height="26" rx="10" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <ellipse cx="45" cy="38" rx="31" ry="8" fill="var(--maroon)"/>
+        <circle cx="45" cy="30" r="7" fill="var(--gold)"/>
+        <path d="M100 150 l14 -70 q2 -8 8 -6 q6 2 4 10 l-14 68 Z" fill="var(--card)" stroke="var(--maroon)" stroke-width="2.5" transform="translate(-10,0) rotate(18 100 150)"/>
+      </g>
+      <g transform="translate(635,90)">
+        <rect x="0" y="60" width="90" height="70" rx="14" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <rect x="4" y="86" width="82" height="40" rx="10" fill="var(--blush)" opacity="0.85"/>
+        <rect x="14" y="38" width="62" height="26" rx="10" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <ellipse cx="45" cy="38" rx="31" ry="8" fill="var(--gold)"/>
+        <circle cx="45" cy="30" r="7" fill="var(--maroon)"/>
+      </g>
+    </svg>`,
+    items:[
+      ["Choco Nutty Brownie Jar Cake","Choco nutty brownie jar",180],
+      ["Hazelnut And Choco Truffle Jar Cake","Choco hazelnut jar",180],
+      ["Tiramisu Jar Cake","Classic tiramisu, jar style",180],
+      ["Chocolate Truffle Jar Cake","Choco truffle jar",180],
+      ["Peach And Raspberry Jar Cake","Peach &amp; raspberry jar",180],
+      ["Mandarin Jar Cake","Mandarin orange jar",180],
+      ["Deli Caramel Crunch Jar Cake","Deli caramel crunchy jar",180],
+      ["Mango And Chocolate Jar Cake","Mango and chocolate jar cake",180],
+    ]
+  },
+  {
+    id:"desserts", title:"Desserts &amp; Pastries", sub:"Brownies, cheesecakes, tarts, tres leches and more from the pastry counter.",
+    icon:`<path d="M4 13a8 8 0 0 1 16 0M4 13h16M4 13l1 7h14l1-7M9 13V9M15 13V9M12 13V7"/>`,
+    banner:`<svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="900" height="260" fill="var(--bg-alt)"/>
+      <ellipse cx="450" cy="225" rx="320" ry="12" fill="var(--line)" opacity="0.5"/>
+      <g transform="translate(150,90)">
+        <circle cx="60" cy="60" r="58" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <path d="M10 30 L110 30 M10 50 L110 50 M10 70 L110 70 M10 90 L110 90 M30 10 L30 110 M55 10 L55 110 M80 10 L80 110" stroke="var(--gold)" stroke-width="2.5" opacity="0.55" clip-path="circle(52px at 60px 60px)"/>
+        <circle cx="60" cy="60" r="58" fill="none" stroke="var(--maroon)" stroke-width="3"/>
+      </g>
+      <g transform="translate(390,70)">
+        <rect x="0" y="60" width="70" height="24" rx="4" fill="var(--maroon-ink)" stroke="var(--maroon)" stroke-width="2"/>
+        <rect x="6" y="36" width="58" height="24" rx="4" fill="var(--maroon-ink)" stroke="var(--maroon)" stroke-width="2"/>
+        <rect x="12" y="12" width="46" height="24" rx="4" fill="var(--maroon-ink)" stroke="var(--maroon)" stroke-width="2"/>
+        <circle cx="35" cy="24" r="3" fill="var(--gold)"/>
+        <circle cx="30" cy="48" r="3" fill="var(--gold)"/>
+      </g>
+      <g transform="translate(580,85)">
+        <path d="M0 65 Q0 20 60 20 Q120 20 120 65 Z" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <path d="M0 65 L120 65 L110 78 Q60 88 10 78 Z" fill="var(--gold)" opacity="0.5"/>
+        <circle cx="35" cy="40" r="6" fill="var(--blush)"/>
+        <circle cx="60" cy="32" r="6" fill="var(--blush)"/>
+        <circle cx="85" cy="42" r="6" fill="var(--blush)"/>
+        <circle cx="48" cy="50" r="6" fill="var(--maroon-ink)"/>
+        <circle cx="72" cy="52" r="6" fill="var(--maroon-ink)"/>
+      </g>
+      <circle cx="255" cy="205" r="5" fill="var(--blush)" opacity="0.55"/>
+      <circle cx="740" cy="180" r="5" fill="var(--gold)" opacity="0.55"/>
+    </svg>`,
+    items:[
+      ["Chocolate Brownie","",105],
+      ["Caramel Brownie","",115],
+      ["Hazelnut Brownie","",115],
+      ["Flourless Brownie","",115],
+      ["Lotus Biscoff Brownie","",140],
+      ["Blueberry Cheese Cake","",140],
+      ["Lotus Biscoff Cheese Cake","",170],
+      ["Chocolate Muffin","",110],
+      ["Hazelnut Muffin","",120],
+      ["Lotus Biscoff Muffin","",130],
+      ["Blueberry Muffin","",110],
+      ["Almond Tart","",120],
+      ["Pineapple Upside Down Cake","",100],
+      ["Caramel Tres Leches","",160],
+      ["Lotus Biscoff Tres Leches","",190],
+      ["Rose Milk Tres Leches","",190],
+      ["Flourless Coconut Cake","",90],
+      ["Rose &amp; Rasgulla Tub Cake","Rose &amp; rasgulla cake tub",250],
+      ["Gulab Jamun Cake Tub","Gulab jamun cake tub",250],
+      ["Litchi &amp; Rose Tres Leches","Rose &amp; litchi tres leches",200],
+      ["Peanut Brownie Bites Mini Tub","",170],
+      ["Lotus Biscoff Mini Brownie Bites Tub","",175],
+      ["Lotus Biscoff Mousse","",150],
+      ["White Chocolate Brownie","",115],
+      ["Red Velvet Brownie","",115],
+      ["Passion Fruit Cheese Cake","",140],
+      ["Linzer Tart","",120],
+      ["Apple Pie","",120],
+      ["French Chocolate Opera","Classic French choco opera",190],
+      ["Raspberry French Opera","Raspberry French opera",190],
+      ["Pista French Opera","French pista opera",190],
+      ["Bounty Chocolate Brownie","",160],
+    ]
+  },
+  {
+    id:"snacks", title:"Snacks &amp; Sides", sub:"Breads, buns, garlic breads and quick bites — veg and non-veg.",
+    icon:`<path d="M4 12c0-4 3.5-8 8-8s8 4 8 8-3 6-8 6-8-2-8-6Z M4 12c0 3 3 5 8 5"/>`,
+    banner:`<svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="900" height="260" fill="var(--bg-alt)"/>
+      <ellipse cx="450" cy="215" rx="300" ry="13" fill="var(--line)" opacity="0.5"/>
+      <g transform="translate(320,70)">
+        <path d="M10 90 Q0 40 90 40 Q180 40 170 90 Q170 120 90 120 Q10 120 10 90Z" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <path d="M35 55 L55 90 M75 48 L95 92 M115 50 L133 90" stroke="var(--gold)" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+      </g>
+      <g transform="translate(560,95)">
+        <ellipse cx="35" cy="40" rx="35" ry="26" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <path d="M15 30 Q35 18 55 30" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+      </g>
+      <g transform="translate(645,110)">
+        <ellipse cx="30" cy="30" rx="30" ry="22" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <path d="M12 22 Q30 12 48 22" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+      </g>
+      <g transform="translate(190,120) rotate(-18)">
+        <path d="M0 30 Q10 -10 20 30" stroke="var(--gold)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M20 30 Q30 -10 40 30" stroke="var(--gold)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <path d="M40 30 Q50 -10 60 30" stroke="var(--gold)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <line x1="0" y1="30" x2="60" y2="30" stroke="var(--maroon)" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <circle cx="740" cy="80" r="5" fill="var(--blush)" opacity="0.5"/>
+      <circle cx="250" cy="70" r="5" fill="var(--gold)" opacity="0.5"/>
+    </svg>`,
+    items:[
+      ["Milk Bread","400 grams",57],
+      ["Wheat Bread","400 grams",65],
+      ["Pack Of Jam Bun And Cream Bun","",50],
+      ["Butter Bun","",35],
+      ["Coconut Bun","2 slice",50],
+      ["Milk Rusk","",60],
+      ["Omam Bread Stick","",55],
+      ["French Fries","",95],
+      ["Peri Peri French Fries","",120],
+      ["Veg Nuggets","5 pieces",95],
+      ["Veg Smiley","5 pieces",95],
+      ["Veg Spring Roll","3 pieces",95],
+      ["Chicken Spring Roll","3 pieces",115,true],
+      ["Chicken Nuggets","5 pieces",115,true],
+      ["Chicken Popcorn","10 pieces",130,true],
+      ["Wheat Masala Bread","200 grams",60],
+      ["Wheat Garlic Bread","200 grams",60],
+      ["Sandwich Bread","500 grams",75],
+      ["Garlic Bread","3 pieces",90],
+      ["Cheese Garlic Bread","3 pieces",110],
+      ["Pesto Paneer Garlic Bread","3 pieces",130],
+      ["Spicy BBQ Paneer Garlic Bread","3 pieces",130],
+      ["Peri Peri Paneer Garlic Bread","3 pieces",130],
+      ["Spicy Chicken Garlic Bread","3 pieces",140,true],
+      ["Pesto Chicken Garlic Bread","3 pieces",160,true],
+      ["Peri Peri Chicken Garlic Bread","3 pieces",150,true],
+      ["BBQ Chicken Garlic Bread","3 pieces",150,true],
+    ]
+  },
+  {
+    id:"drinks", title:"Drinks", sub:"Cold coffees, mojitos and coolers.",
+    icon:`<path d="M6 3h12l-1.5 15a2 2 0 0 1-2 1.8h-5a2 2 0 0 1-2-1.8L6 3ZM5 8h14"/>`,
+    banner:`<svg viewBox="0 0 900 260" xmlns="http://www.w3.org/2000/svg">
+      <rect width="900" height="260" fill="var(--bg-alt)"/>
+      <ellipse cx="450" cy="225" rx="280" ry="12" fill="var(--line)" opacity="0.5"/>
+      <g transform="translate(370,50)">
+        <path d="M10 30 L110 30 L98 165 Q60 178 22 165 Z" fill="var(--card)" stroke="var(--maroon)" stroke-width="3"/>
+        <path d="M14 145 L106 145 L98 165 Q60 178 22 165 Z" fill="var(--maroon-ink)" opacity="0.85"/>
+        <path d="M18 95 L102 95 L98 145 L22 145 Z" fill="var(--gold)" opacity="0.65"/>
+        <path d="M22 65 Q60 50 98 65 L98 95 L22 95 Z" fill="var(--card)"/>
+        <path d="M28 60 Q60 46 92 60" stroke="var(--maroon)" stroke-width="2.5" fill="none" opacity="0.6"/>
+        <line x1="60" y1="10" x2="72" y2="70" stroke="var(--maroon)" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(590,110)">
+        <path d="M6 20 L74 20 L64 110 Q40 118 16 110 Z" fill="var(--card)" stroke="var(--gold)" stroke-width="3"/>
+        <circle cx="30" cy="70" r="3.5" fill="var(--blush)"/>
+        <circle cx="50" cy="85" r="3" fill="var(--blush)"/>
+        <circle cx="40" cy="55" r="2.5" fill="var(--blush)"/>
+        <path d="M46 8 q-14 8 -6 22" stroke="var(--veg)" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <line x1="66" y1="4" x2="52" y2="30" stroke="var(--maroon)" stroke-width="4" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(210,140)">
+        <path d="M0 15 Q40 -5 80 15" stroke="var(--gold)" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+      </g>
+      <circle cx="260" cy="95" r="5" fill="var(--gold)" opacity="0.5"/>
+      <circle cx="700" cy="70" r="5" fill="var(--blush)" opacity="0.5"/>
+    </svg>`,
+    items:[
+      ["Classic Cold Coffee","",140],
+      ["Cold Coffee With Vanilla Ice Cream","",180],
+      ["Cold Coffee With Chocolate Ice Cream","",180],
+      ["Mint Mojito","Non-alcoholic",105],
+      ["Blueberry Mojito","Non-alcoholic",140],
+      ["Strawberry Mojito","Non-alcoholic",140],
+      ["Blue Curacao","",110],
+      ["Caramel Cold Coffee","",165],
+      ["Sweet Lemon Juice","",50],
+      ["Salted Lemon Soda","",55],
+      ["Iced Lemon Tea","",90],
+    ]
+  },
+];
+
+const main = document.getElementById('menuData');
+sections.forEach(sec=>{
+  const s = document.createElement('section');
+  s.className = 'menu-section';
+  s.id = sec.id;
+  s.innerHTML = `
+    <div class="wrap">
+      <div class="section-banner">${sec.banner}</div>
+      <div class="section-head">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${sec.icon}</svg>
+        <h2>${sec.title}</h2>
+      </div>
+      <p class="section-sub">${sec.sub}</p>
+      <div class="item-grid">
+        ${sec.items.map(it=>{
+          const [name, desc, price, isNonVeg] = it;
+          return `<div class="menu-item">
+            <div class="menu-item-row">
+              ${veg(isNonVeg? ' nonveg':'')}
+              <span class="menu-item-name">${name}${desc?` <span style="font-weight:400;color:var(--ink-soft);font-size:0.85em;">(${desc})</span>`:''}</span>
+              <span class="dots"></span>
+              <span class="price">₹${price}</span>
+            </div>
+          </div>`;
+        }).join('')}
+      </div>
+    </div>
+  `;
+  main.appendChild(s);
+});
+
+// Fix internal anchor links so they smooth-scroll instead of
+// triggering a real navigation (which some embed contexts flag as "external")
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', function(e){
+    const id = this.getAttribute('href').slice(1);
+    const target = document.getElementById(id) || document.querySelector('body');
+    e.preventDefault();
+    target.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+});
+
+// active tab highlight
+const tabLinks = [...document.querySelectorAll('#tabNav a')];
+const targets = sections.map(s=>document.getElementById(s.id));
+const obs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      tabLinks.forEach(l=>l.classList.remove('active'));
+      const link = document.querySelector(`#tabNav a[href="#${e.target.id}"]`);
+      if(link) link.classList.add('active');
+    }
+  });
+},{ rootMargin:"-40% 0px -50% 0px" });
+targets.forEach(t=>t && obs.observe(t));
+</script>
+
+</body>
+</html>
